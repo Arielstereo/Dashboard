@@ -10,6 +10,7 @@ const Layout = ({ children }) => {
   const router = useRouter();
 
   const userProfile = useUserStore((state) => state.user);
+  console.log(userProfile);
   const setUserProfile = useUserStore((state) => state.setUser);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const Layout = ({ children }) => {
         throw new Error(error.message);
       }
     };
-    return getProfile;
+    getProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
