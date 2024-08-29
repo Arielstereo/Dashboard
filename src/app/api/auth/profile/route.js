@@ -6,27 +6,27 @@ import User from "@/models/User";
 
 export async function GET(request) {
   try {
-    const jwtSecret = process.env.JWT_SECRET_KEY;
+    
     const getCookie = cookies();
     const token = getCookie.get("USER_TOKEN");
 
     if (!token) {
-      return NextResponse.json({ msg: "token not found" });
+      return NextResponse.json({ msg: "Token not found" });
     }
 
     const { value } = token;
-
+    const jwtSecret = process.env.JWT_SECRET_KEY;
     const {payload} = jwt.verify(value, jwtSecret);
 
     if (!payload) {
-      return NextResponse.json({ msg: "profile not found" });
+      return NextResponse.json({ msg: "Profile not found" });
     }
 
     return NextResponse.json({
       profile: payload,
     });
   } catch (error) {
-    throw new Error(error.message)
+    return NextResponse.json({ msg: "Error profile", error: error.message });
   }
 }
 
