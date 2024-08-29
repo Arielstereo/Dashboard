@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import dbConnection from "@/lib/dbConnection";
 import User from "@/models/User";
 
-export function GET(request) {
+export async function GET(request) {
   try {
     const jwtSecret = process.env.JWT_SECRET_KEY;
     const getCookie = cookies();
@@ -17,7 +17,6 @@ export function GET(request) {
     const { value } = token;
 
     const {payload} = jwt.verify(value, jwtSecret);
-    console.log(payload);
 
     if (!payload) {
       return NextResponse.json({ msg: "profile not found" });
