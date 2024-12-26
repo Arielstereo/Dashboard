@@ -9,7 +9,7 @@ import { ToggleMode } from "@/components/ToggleMode";
 const inter = Inter({ subsets: ["latin"], weight: "700" });
 
 export const metadata = {
-  title: "Auth|Next",
+  title: "Dashboard Bank",
   description: "Dashboard bank",
 };
 
